@@ -97,5 +97,6 @@ wget https://static.tp-link.com/2019/201911/20191108/Omada_Controller_v3.2.4_lin
 tar zxvf Omada_Controller_v3.2.4_linux_x64.tar.gz --strip-components=1
 chown -R root:root /tmp/Omada_Controller_v3.2.4_linux_x64
 cd /tmp/Omada_Controller_v3.2.4_linux_x64
+chmod +x install.sh
 sed -i '203d' install.sh
 echo yes | ./install.sh
