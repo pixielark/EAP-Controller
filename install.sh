@@ -42,6 +42,7 @@ mkdir -p /config/logs
 mkdir -p /config/data
 mkdir -p /config/keystore
 mkdir -p /config/cert
+mkdir -p /config/work
 
 # Checking if previous configuration exists
 
@@ -50,17 +51,21 @@ if [ -d "/config/data/map" ]; then
   rm -r /opt/tplink/EAPController/data
   rm -r /opt/tplink/EAPController/logs
   rm -r /opt/tplink/EAPController/keystore
+  rm -r /opt/tplink/EAPController/work
   ln -sf /config/data /opt/tplink/EAPController/data
   ln -sf /config/logs /opt/tplink/EAPController/logs
   ln -sf /config/keystore /opt/tplink/EAPController/keystore
+  ln -sf /config/work /opt/tplink/EAPController/work
 else
   echo "Copying configuration from install directory to host!"
   mv /opt/tplink/EAPController/data /config
   mv /opt/tplink/EAPController/logs /config
   mv /opt/tplink/EAPController/keystore /config
+  mv /opt/tplink/EAPController/work /config
   ln -sf /config/data /opt/tplink/EAPController/data
   ln -sf /config/logs /opt/tplink/EAPController/logs
   ln -sf /config/keystore /opt/tplink/EAPController/keystore
+  ln -sf /config/work /opt/tplink/EAPController/work
 fi
 
 # Checking if custom cert is available
@@ -77,7 +82,8 @@ EOT
 cat <<'EOT' > /etc/my_init.d/01_start.sh
 #!/bin/bash
 echo "Upgrading local packages(Security) - This might take awhile(first run takes some extra time)"
-apt-get update -qq && apt-get upgrade -yqq
+apt-get update -qq
+apt-get upgrade -y -o Dpkg::Options::="--force-confdef"
 echo "Upgrade Done...."
 chown -R root:root /opt/tplink /config
 /etc/init.d/tpeap start
@@ -93,10 +99,10 @@ chmod -R +x /etc/my_init.d/
 #########################################
 
 cd /tmp
-wget https://static.tp-link.com/2019/201911/20191108/Omada_Controller_v3.2.4_linux_x64.tar.gz
-tar zxvf Omada_Controller_v3.2.4_linux_x64.tar.gz
-chown -R root:root /tmp/Omada_Controller_v3.2.4_linux_x64
-cd /tmp/Omada_Controller_v3.2.4_linux_x64
+wget https://static.tp-link.com/2020/202001/20200116/Omada_Controller_v3.2.6_linux_x64.tar.gz
+tar zxvf Omada_Controller_v3.2.6_linux_x64.tar.gz
+chown -R root:root /tmp/Omada_Controller_v3.2.6_linux_x64
+cd Omada_Controller_v3.2.6_linux_x64
 chmod +x install.sh
 sed -i '203d' install.sh
 echo yes | ./install.sh
