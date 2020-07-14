@@ -21,7 +21,7 @@ rm -rf /etc/service/sshd /etc/my_init.d/00_regen_ssh_host_keys.sh
 
 # Install Dependencies
 apt-get -qq update
-apt-get -qy install software-properties-common wget net-tools jsvc tzdata
+apt-get -qy install software-properties-common wget net-tools jsvc tzdata openjdk-8-jdk
 
 
 #########################################
@@ -30,6 +30,9 @@ apt-get -qy install software-properties-common wget net-tools jsvc tzdata
 
 # Initiate config directory
 mkdir -p /config
+
+# Change Default JDK Version
+update-java-alternatives -s java-1.8.0-openjdk-amd64
 
 
 # Setup Ddirectories
