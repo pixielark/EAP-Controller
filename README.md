@@ -8,7 +8,7 @@ EAP Controller - https://www.tp-link.com/common/Spotlight/EAP_controller.html
 
 
 
-Running on the latest Phusion release (ubuntu 18.04), with OMADA SDN Controller v4.1.5
+Running on the latest Phusion release (ubuntu 18.04), with OMADA SDN Controller v4.2.4
 ONLY X86!!!!!
 
 
@@ -47,6 +47,9 @@ https://<host ip>:8043
 * This buils is only X86 with TP-Links budeled binaries
 
 **Change notes**
+* 2020.11.17
+Upgrade to latest Omada SDN Controller (4.2.4)
+
 * 2020.06.14
 Upgrade to latest Omada SDN Controller (4.1.5)
 
