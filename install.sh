@@ -100,10 +100,10 @@ chmod -R +x /etc/my_init.d/
 #########################################
 
 cd /tmp
-wget https://static.tp-link.com/2021/202105/20210507/Omada_SDN_Controller_v4.3.5_linux_x64.tar.gz
-tar zxvf Omada_SDN_Controller_v4.3.5_linux_x64.tar.gz
-chown -R root:root /tmp/Omada_SDN_Controller_v4.3.5_linux_x64
-cd Omada_SDN_Controller_v4.3.5_linux_x64
+wget https://static.tp-link.com/software/2021/202107/20210701/Omada_SDN_Controller_v4.4.3_linux_x64.tar.gz
+tar zxvf Omada_SDN_Controller_v4.4.3_linux_x64.tar.gz
+chown -R root:root /tmp/Omada_SDN_Controller_v4.4.3_linux_x64
+cd Omada_SDN_Controller_v4.4.3_linux_x64
 chmod +x install.sh
 sed -i '218d' install.sh
 echo yes | ./install.sh
